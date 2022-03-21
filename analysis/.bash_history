@@ -50,3 +50,4 @@ cc
 clang
 apt
 sudo apt install gcc
+pip install tftb
