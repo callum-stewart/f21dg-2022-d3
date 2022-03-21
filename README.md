@@ -7,8 +7,8 @@ This will allow them to explore the differences between these two methods for de
 The application also has a number of convenience features for users, such as the ability to bookmark examples, and a built in interface tutorial.
 
 In this online tutorial we will first explore some of the theory behind STFT and and EMD.
-Then we will run through some example analyses using both generated signals and pregenerated signals as CSVs, which can be found <!-- TODO: HERE -->
-Pregenerated signals can be entered manually as specified, or you can click on the link to have the sample preconfigured for you [like this](../index.html?dataMethod=config&analysisMethod=EMD&combinationMethod=sum&1-id=1&1-type=sinusoid&1-phase=0&1-frequency=100&1-amplitude=100&2-id=2&2-type=colour-noise&2-colour=brownian&2-seed=12341234&2-amprollfactor=100&2-variance=1#)
+Then we will run through some example analyses using both generated signals and pre-generated signals as CSVs.
+Pre-generated signals can be entered manually as specified, or you can click on the link to have the sample preconfigured for you [like this](../index.html?dataMethod=config&analysisMethod=EMD&combinationMethod=sum&1-id=1&1-type=sinusoid&1-phase=0&1-frequency=100&1-amplitude=100&2-id=2&2-type=colour-noise&2-colour=brownian&2-seed=12341234&2-amprollfactor=100&2-variance=1#)
 
 ## Theory
 ### Time Series Analysis
@@ -31,9 +31,9 @@ When we begin to run examples by building signals through the UI, you will see t
 Below is a screenshot of our application superposing a sinusoid and a chirp, you can see this for yourself [here](../index.html?dataMethod=config&analysisMethod=STFT&1-id=1&1-type=chirp&1-frequency=0&1-rate=2&1-amplitude=20&combinationMethod=sum&2-id=2&2-type=sinusoid&2-phase=0&2-frequency=20&2-amplitude=20#).
 Ignore the spectrogram for now, we will explain that later, and please feel free to explore the graph using the pan and zoom controls.
 
-![Complex signal derived from simple signals](img/composition_of_signals.png) <!-- TODO: replace with scrot from our app -->
+![Complex signal derived from simple signals](img/composition_of_signals.png) 
 
-For the rest of this theory section we will be using signals generated and analysed in a Jupyter Notebook, due to limitaions in the application (such as not having the capability of performing FFT).
+For the rest of this theory section we will be using signals generated and analysed in a Jupyter Notebook, due to limitations in the application (such as not having the capability of performing FFT).
 Once we have gone over the theory we will begin to use the application to perform some more simple analysis.
 
 ### Discrete Fourier Transform
@@ -169,7 +169,7 @@ This being said, for analysing non-stationary signals EMD has some obvious advan
 # Demonstration
 
 In this section we will run you through some examples that will allow you to experiment with the application and get a more intuitive feel for how these signals analysis methods work.
-It will *not* provided a detailed overview of the UI, as we have implementated tooltips for this purpose.
+It will *not* provided a detailed overview of the UI, as we have implemented tooltips for this purpose.
 
 ## Running an STFT analysis
 
@@ -197,7 +197,7 @@ We can see that a second flat line appears at the 4kHz mark.
 From this graph, we can tell that at any point in time there are two frequencies present, a 2kHz frequency and a 4kHz frequency.
 We can also tell by the colour intensity that they are of equal strength.
 
-You can click [here](img/) to discover what it looks like when two waves of different amplitudes are combined.
+You can click [here](../index.html?analysisMethod=STFT&dataMethod=config&1-id=1&1-type=sinusoid&1-phase=0&1-frequency=2000&1-amplitude=100&combinationMethod=sum&2-id=2&2-type=sinusoid&2-phase=0&2-frequency=4000&2-amplitude=50#) to discover what it looks like when two waves of different amplitudes are combined.
 
 ![Two Simple Sinusoid Different Amplitude](img/two_sins_diffamps_stft.png)
 
@@ -207,7 +207,7 @@ This is due to the fact that the 4kHz sinusoid has half of the amplitude of the 
 
 ### STFT of a Chirp
 
-Let's now analyse the STFT output of a chirp, with an inital frequency of 0, a chirp rate of 100, and an amplitude of 100.
+Let's now analyse the STFT output of a chirp, with an initial frequency of 0, a chirp rate of 100, and an amplitude of 100.
 Or you can [click here](../index.html?analysisMethod=STFT&dataMethod=config&1-id=1&1-type=chirp&1-frequency=0&1-rate=100&1-amplitude=100&combinationMethod=sum#)
 
 ![Image of the STFT analysis](img/chirp_stft.png)
@@ -233,7 +233,7 @@ However, the amplitude of the signal is also linearly increasing thanks to it be
 
 ### STFT of an Uploaded Signal
 
-You can download the `stft_sample.csv` file [here]() <!-- TODO -->
+You can download the `stft_sample.csv` file [here](https://raw.githubusercontent.com/callum-stewart/f21dg-2022-d2/main/tests/stft_sample.csv) <!-- TODO -->
 This CSV was generated by following [the steps in SciPy's STFT documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.stft.html) and then dumping the time series as a CSV.
 We can then upload the file by selecting 'STFT' and 'Upload Signal' and following the prompts.
 After performing the analysis you should be presented with the following graph.
@@ -246,12 +246,12 @@ We can see that there appears to be an oscillation in the spectrogram, reflectin
 
 A limitation of any signals analysis technique built on top of Fourier Transforms called the Gabor uncertainty limit.
 The Gabor limit refers to the fact that the exact frequency and time of a signal cannot be known simultaneously, I.E., a signal can never be a plotted as a point on a frequency time graph.
-You may have heard of a similar phenomena in quantum mechanics called the Eisenberg uncertainty principal, where the momentum and position of a partical cannot be known at the same time.
-These two phenomena are in fact the same phenomena, owing to the wave like qualities of particals.
+You may have heard of a similar phenomena in quantum mechanics called the Eisenberg uncertainty principal, where the momentum and position of a particle cannot be known at the same time.
+These two phenomena are in fact the same phenomena, owing to the wave like qualities of particles.
 The uncertainty is a property of the signal itself, not a limitation of the mathematics.
 You can read more [here](https://agilescientific.com/blog/2014/1/15/what-is-the-gabor-uncertainty-principle.html) if you want to learn more.
 
-We can see the Gabor limit in action using the provided CSV <!-- name -->.
+We can see the Gabor limit in action using the provided CSV `steps.csv` file, which may be obtained [here](https://raw.githubusercontent.com/callum-stewart/f21dg-2022-d3/main/analysis/output/steps.csv)
 When selecting the 'Upload' and 'STFT' options you will be presented with a dialog that allows you to choose the length of each segment.
 This segment length directly controls the time resolution of the STFT analysis, by choosing a higher length per segment, you are increasing the number of time samples in each segment, thus decreasing the time resolution and increasing the frequency resolution.
 
@@ -278,7 +278,52 @@ Lets now redo the analysis using a length segment of 2048.
 ![2048](img/stft_steps_2048.png)
 
 We can see now that each signal has a very narrow bar in the `y` direction, reflecting the fact that we are more certain of precisely what frequency these signals are.
-Conversly, we can see a significant overlap in the signal transitions (there is no overlap in the original signal), reflecting the fact that while we are more certain of precisely what frequency these signals are, we are less certain of exactly when they begin and end.
+Conversely, we can see a significant overlap in the signal transitions (there is no overlap in the original signal), reflecting the fact that while we are more certain of precisely what frequency these signals are, we are less certain of exactly when they begin and end.
 
 
 ## Running an EMD analysis
+
+Let's configure the application for EMD analysis and configure signal.
+We can click [here](../index.html?analysisMethod=EMD&dataMethod=config&1-id=1&1-type=sinusoid&1-phase=0&1-frequency=20&1-amplitude=1&combinationMethod=sum&2-id=2&2-type=sinusoid&2-phase=0&2-frequency=40&2-amplitude=2#) to configure an analysis with two simple sinusoids.
+The result of the EMD analysis will look like this.
+
+![simple sinusoid emd](img/simple_sinusoid_stft.png)
+
+And we can also run a sinusoid and a chirp by following [this](../index.html?dataMethod=config&analysisMethod=EMD&1-id=1&1-type=chirp&1-frequency=0&1-rate=10&1-amplitude=1&combinationMethod=sum&2-id=2&2-type=sinusoid&2-phase=0&2-frequency=20&2-amplitude=2#) link.
+
+
+![simple sinusoid and chirp emd](img/emd_sin_chirp.png)
+
+We can see the signals being decomposed into simple oscillatory modes that compose the original signal.
+This kind of analysis may be a little less intuitive for people who are otherwise more familiar with time-frequency analysis techniques.
+Often Hilbert Spectral Analysis is performed along side EMD by applying a transform known as the Hilbert Transform to each of the IMFs in a process called the Hilbert Huang Transform.
+This HSA output is a spectrogram which is sometimes more intuitive to understand.
+
+Our application is not capable of performing a HSA, however an example of a HSA is given at the end to give you an understanding of what it looks like.
+
+We can now upload the provided `emd_sample` CSV which can be obtained [here](https://raw.githubusercontent.com/callum-stewart/f21dg-2022-d2/main/tests/emd_sample.csv)  and run the analysis.
+This CSV was generated by following [the steps in the EMD's library's documentation](https://emd.readthedocs.io/en/stable/emd_tutorials/00_quick_start/emd_tutorial_00_start_01_quicksift.html#sphx-glr-emd-tutorials-00-quick-start-emd-tutorial-00-start-01-quicksift-py) and then dumping the time series as a CSV.
+This will look like so.
+
+![emd uploaded](img/emd_upload.png)
+
+You might also want to look at the full HHT analysis, as HHT can provide an accurate representation of the instantaneous frequency.
+Here is the full HHT analysis performed on the `steps.csv` file from before.
+
+![hht](img/steps_hht.png)
+
+We can see that the output is quite similar to what we saw from the STFT spectrogram.
+
+### Drawbacks of EMD analysis
+
+We can see from the first EMD analysis that there is some mode switching.
+This is when one IMF contains components of vastly different frequencies, which is something that we can see in IMF 1.
+
+End effects are also something that EMD analysis suffers from.
+Fortunately (or unfortunately for the purposes of demonstration), the EMD library we are using has some tricks up its sleeve to prevent this from occurring, such as applying a [sift map](https://emd.readthedocs.io/en/stable/stubs/emd.sift.iterated_mask_sift.html) in order to ease edge effects.
+Below is an example of the kind of edge effect that EMD analysis can suffer from.
+
+[edge effect](img/edge_effect.png)
+
+Lastly, EMD analysis can be less computationally efficient. As the number of sifts is determined based on the signal itself, its possible to have many many rounds of sifting without a proto-IMF ever satisfying the stopping criterion.
+Again, our library saves us here by having a maximum number of sifts allowed per IMF.
